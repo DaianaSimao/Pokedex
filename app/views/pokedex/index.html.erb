@@ -1,0 +1,91 @@
+<!-- app/views/pokedex/show.html.erb -->
+<div class="pokedex">
+  <div class="left-container">
+    <div class="left-container__top-section">
+      <div class="top-section__blue"></div>
+      <div class="top-section__small-buttons">
+        <div class="top-section__red"></div>
+        <div class="top-section__yellow"></div>
+        <div class="top-section__green"></div>
+      </div>
+    </div>
+    <div class="left-container__main-section-container">
+      <div class="left-container__main-section">
+        <div class="main-section__white">
+          <div class="main-section__black">
+            <div class="main-screen">
+              <div class="screen__header">
+                <span class="poke-name"><%= @pokemon[:name] %></span>
+                <span class="poke-id">#<%= @pokemon[:id] %></span>
+              </div>
+              <div class="screen__image">
+                <img src="<%= @pokemon[:image_url] %>" class="poke-image" alt="front">
+                <!-- Adicione aqui a imagem de costas se houver -->
+              </div>
+              <div class="screen__description">
+                <div class="stats__types">
+                  <% @pokemon[:types].each do |type|%>
+                    <span class="poke-type <%= type.downcase %>"><%= type %></span>
+                  <% end %>
+                </div>
+                <div class="screen__stats">
+                  <p class="stats__weight">weight: <span class="poke-weight"><%= @pokemon[:weight] %></span></p>
+                  <p class="stats__height">height: <span class="poke-height"><%= @pokemon[:height] %></span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="left-container__controllers">
+          <div class="controllers__d-pad">
+            <div class="d-pad__cell top"></div>
+            <div class="d-pad__cell left"></div>
+            <div class="d-pad__cell middle"></div>
+            <div class="d-pad__cell right"></div>
+            <div class="d-pad__cell bottom"></div>
+          </div>
+          <div class="controllers__buttons">
+            <div class="buttons__button">B</div>
+            <div class="buttons__button">A</div>
+          </div>
+        </div>
+      </div>
+      <div class="left-container__right">
+        <div class="left-container__hinge"></div>
+        <div class="left-container__hinge"></div>
+      </div>
+    </div>
+  </div>
+  <div class="right-container">
+    <div class="right-container__black">
+      <div class="right-container__screen">
+        <strong>Moves:</strong>
+        <% @pokemon[:moves].take(5).each do |move| %>
+          <div><%= move %></div>
+        <% end %>
+        <strong>Characteristic:</strong>
+        <div><%= @pokemon[:description] rescue nil %></div>
+        <strong>Abilities:</strong>
+        <% @pokemon[:abilities].each do |ability| %>
+          <div><%= ability %></div>
+        <% end %>
+        <strong>Status:</strong>
+        <% @pokemon[:status].each do |status| %>
+          <%= status[:name] %>:
+          <%= status[:base_stat]%>
+          <br>
+        <% end %>
+      </div>
+    </div>
+    <div class="right-container__buttons">
+      <div class="search-form">
+        <%= form_tag(pokedex_index_path, method: :get, class: 'form-inline') do %>
+          <div class="form-group">
+            <%= text_field_tag :term, params[:term], class: 'form-control mb-2', placeholder: 'Search Pokémon...', style: "border: 3px solid black; box-shadow: inset 0 0 3px 3px rgba(0,0,0,.3);" %>
+          </div>
+          <%= submit_tag "", class: "top-section__blue" %>
+        <% end %>
+      </div>
+    </div>
+</div>
+</div>

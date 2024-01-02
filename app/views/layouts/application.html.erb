@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pokedex</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+  </head>
+
+  <body>
+    <div style="margin-top: 110px;">    
+      <div class="container">
+        <% flash.each do |type, message| %>
+          <% if type == "alert"%>
+            <div class="notice notice-danger flash-message"  role="alert">
+              <strong><i class="bi bi-exclamation-circle-fill"></i> <%= message %></strong>
+            </div>
+          <% else %>
+            <div class="notice notice-info flash-message"  role="alert">
+              <strong><i class="bi bi-check-circle-fill"></i></i> <%= message %></strong>
+            </div>
+          <% end %>
+        <% end %>
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>
