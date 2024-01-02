@@ -1,7 +1,7 @@
 # syntax = docker/dockerfile:1
 
 # Make sure RUBY_VERSION matches the Ruby version in .ruby-version and Gemfile
-ARG RUBY_VERSION=3.0.0
+ARG RUBY_VERSION=3.0.6
 FROM ruby:$RUBY_VERSION-slim as base
 
 LABEL fly_launch_runtime="rails"
@@ -17,8 +17,7 @@ ENV BUNDLE_DEPLOYMENT="1" \
 
 # Update gems and bundler
 RUN gem update --system --no-document && \
-    gem install -N bundler
-
+    gem install -N bundler -v "~> 2.4.22"
 
 # Throw-away build stage to reduce size of final image
 FROM base as build
@@ -28,7 +27,7 @@ RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential curl libpq-dev node-gyp pkg-config python
 
 # Install JavaScript dependencies
-ARG NODE_VERSION=16.20.0
+ARG NODE_VERSION=18.00.0
 ARG YARN_VERSION=1.22.19
 ENV PATH=/usr/local/node/bin:$PATH
 RUN curl -sL https://github.com/nodenv/node-build/archive/master.tar.gz | tar xz -C /tmp/ && \
