@@ -19,6 +19,9 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 gem "pry-rails"
 gem 'aws-sdk-s3', require: false
+gem "unicorn"
+gem "thin"
+gem "passenger"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
