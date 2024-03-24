@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for pokedeex on 2024-01-02T11:52:22-03:00
+# fly.toml app configuration file generated for pokedex-env on 2024-01-10T23:07:03-03:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "pokedeex"
+app = "pokedex-env"
 primary_region = "ams"
 console_command = "/rails/bin/rails console"
 
