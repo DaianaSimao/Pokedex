@@ -46,7 +46,7 @@ jobs:
       # Add or replace any other lints here
       - name: Install dependencies
         run: bundle install
-      - name: Set up database schema
-        run: bin/rails db:schema:load RAILS_ENV=test
+      # - name: Set up database schema
+      #   run: bin/rails db:schema:load RAILS_ENV=test
       - name: Run RSpec tests
         run: bundle exec rspec --parallel
