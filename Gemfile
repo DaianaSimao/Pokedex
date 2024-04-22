@@ -24,7 +24,7 @@ gem 'simplecov', require: false, group: :test
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   gem "rspec-rails", "~> 6.1.0"
-  gem "sqlite3"
+  gem "sqlite3", "~> 1.4"
 end
 
 group :development do  gem "web-console"
