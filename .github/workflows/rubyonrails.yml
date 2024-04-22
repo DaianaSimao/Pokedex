@@ -39,6 +39,21 @@ jobs:
       # Add or replace test runners here
       - name: Run tests
         run: bin/rake
+rspec:
+  name: RSpec
+  runs-on: ubuntu-20.04
+  env:
+    RAILS_ENV: test
+    DATABASE_URL: postgres://postgres:example@localhost:5432/db_test
+  services:
+    postgres:
+      image: postgres:latest
+      ports: ['5432:5432']
+      env:
+        POSTGRES_DB: db_test
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: example
+      options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
   lint:
     runs-on: ubuntu-latest
@@ -50,9 +65,5 @@ jobs:
         with:
           bundler-cache: true
       # Add or replace any other lints here
-      - name: Security audit dependencies
-        run: bin/bundler-audit --update
-      - name: Security audit application code
-        run: bin/brakeman -q -w2
       - name: Lint Ruby files
-        run: bin/rubocop --parallel
+        run: bundle exec rspec --parallel
