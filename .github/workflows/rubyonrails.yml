@@ -49,4 +49,4 @@ jobs:
       # - name: Set up database schema
       #   run: bin/rails db:schema:load RAILS_ENV=test
       - name: Run RSpec tests
-        run: bundle exec rspec --parallel
+        run: bundle exec rspec
